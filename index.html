@@ -4,21 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be My Valentine</title>
+    <link rel="icon" href="favicon.png" type="image/png" />
     <link rel="stylesheet" href="css/valentine.css" />
   </head>
   <body>
-    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
+    <div id="valentineQuestion"><b>Deniz Emre, will you be my valentine?</b></div>
     <button class="answerButton" onclick="location.href='thankyou.html'">
       Yes
     </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
+    <button class="answerButton" id="noButton">No</button>
     <br />
     <img src="please.png" height="498px" width="150px" alt="cat asking question" class="responsive" />
 
     <script>
+      let noClickCount = 0;
+      const noButtonTexts = [
+        "No",
+        "Are you sure?",
+        "Really?",
+        "Just say that you hate me :(",
+        "Last chance!"
+      ];
+      
       document
         .getElementById("noButton")
         .addEventListener("click", function () {
+          noClickCount++;
+          
+          if (noClickCount >= 5) {
+            location.href = 'https://careers.abb/global/en/graduates-entry-level'; // Redirect after 5 clicks
+            return;
+          }
+          
+          // Update button text
+          this.textContent = noButtonTexts[noClickCount];
+          
           var yesButton = document.querySelector(
             'button[onclick*="thankyou.html"]'
           );
